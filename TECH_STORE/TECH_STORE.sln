@@ -5,13 +5,15 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TECH_STORE", "TECH_STORE\TECH_STORE.csproj", "{77E2BCDA-6273-47AD-A3FA-A72552F46786}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech_BussinessObjects", "Tech_BussinessObjects\Tech_BussinessObjects.csproj", "{AF1997DE-4680-4BEC-99BC-7627A725D7AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech_BussinessObjects", "Tech_BussinessObjects\Tech_BussinessObjects.csproj", "{AF1997DE-4680-4BEC-99BC-7627A725D7AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech_Daos", "Tech_Daos\Tech_Daos.csproj", "{967336CE-3F04-4B72-AA88-14E030A2A44D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech_Daos", "Tech_Daos\Tech_Daos.csproj", "{967336CE-3F04-4B72-AA88-14E030A2A44D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech_Repositories", "Tech_Repositories\Tech_Repositories.csproj", "{6F4C08F1-6404-4FBC-B656-C72AAFC2DCBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech_Repositories", "Tech_Repositories\Tech_Repositories.csproj", "{6F4C08F1-6404-4FBC-B656-C72AAFC2DCBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech_Services", "Tech_Services\Tech_Services.csproj", "{A7AA3B0C-D097-4C32-B758-3E1BFA2E1CDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech_Services", "Tech_Services\Tech_Services.csproj", "{A7AA3B0C-D097-4C32-B758-3E1BFA2E1CDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech_Store_WebApp", "Tech_Store_WebApp\Tech_Store_WebApp.csproj", "{10D367D9-3DA3-4E50-9CF8-AF0D7F5908FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{A7AA3B0C-D097-4C32-B758-3E1BFA2E1CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7AA3B0C-D097-4C32-B758-3E1BFA2E1CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7AA3B0C-D097-4C32-B758-3E1BFA2E1CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10D367D9-3DA3-4E50-9CF8-AF0D7F5908FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D367D9-3DA3-4E50-9CF8-AF0D7F5908FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D367D9-3DA3-4E50-9CF8-AF0D7F5908FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D367D9-3DA3-4E50-9CF8-AF0D7F5908FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
