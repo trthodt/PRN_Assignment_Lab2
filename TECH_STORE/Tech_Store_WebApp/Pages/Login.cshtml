@@ -2,6 +2,11 @@
 @model Tech_Store_WebApp.Pages.LoginModel
 @{
     ViewData["Title"] = "Login";
+    bool isLogin = "admin".Equals(HttpContext.Session.GetString("Role"));
+    if (isLogin)
+    {
+        Response.Redirect("/Index");
+    }
 }
 
 
@@ -37,4 +42,5 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

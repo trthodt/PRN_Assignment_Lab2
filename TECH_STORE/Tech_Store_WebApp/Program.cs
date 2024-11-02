@@ -17,6 +17,7 @@ namespace Tech_Store_WebApp
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IOrderDetailService, OrderDetailService>();
+            builder.Services.AddSession();
 
             var app = builder.Build();
 
@@ -27,7 +28,7 @@ namespace Tech_Store_WebApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

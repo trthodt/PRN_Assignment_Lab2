@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Tech_BussinessObjects;
+using Tech_Services.Interface;
 
 namespace Tech_Store_WebApp.Pages.ProductPage
 {
     public class DeleteModel : PageModel
     {
-        private readonly Tech_BussinessObjects.PRN221_ASSIGNMENTContext _context;
+        private readonly IProductService _context;
 
-        public DeleteModel(Tech_BussinessObjects.PRN221_ASSIGNMENTContext context)
+        public DeleteModel(IProductService context)
         {
             _context = context;
         }
@@ -21,14 +22,14 @@ namespace Tech_Store_WebApp.Pages.ProductPage
         [BindProperty]
       public Product Product { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null || _context.GetProducts() == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Products.FirstOrDefaultAsync(m => m.Id == id);
+            var product = _context.GetProduct(id);
 
             if (product == null)
             {
@@ -41,19 +42,17 @@ namespace Tech_Store_WebApp.Pages.ProductPage
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null || _context.GetProducts() == null)
             {
                 return NotFound();
             }
-            var product = await _context.Products.FindAsync(id);
+            var product = _context.GetProduct(id);
 
             if (product != null)
             {
-                Product = product;
-                _context.Products.Remove(Product);
-                await _context.SaveChangesAsync();
+                _context.Delete(product);
             }
 
             return RedirectToPage("./Index");

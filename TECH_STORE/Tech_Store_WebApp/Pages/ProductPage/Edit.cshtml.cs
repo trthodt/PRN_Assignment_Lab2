@@ -7,35 +7,44 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Tech_BussinessObjects;
+using Tech_Services.Interface;
 
 namespace Tech_Store_WebApp.Pages.ProductPage
 {
     public class EditModel : PageModel
     {
-        private readonly Tech_BussinessObjects.PRN221_ASSIGNMENTContext _context;
+        private readonly IProductService _context;
 
-        public EditModel(Tech_BussinessObjects.PRN221_ASSIGNMENTContext context)
+        public EditModel(IProductService context)
         {
             _context = context;
         }
+        List<Category> categories = new List<Category>
+        {
+            new Category { Id = 1, CategoryName = "Electronics" },
+            new Category { Id = 2, CategoryName = "Home Appliances" },
+            new Category { Id = 3, CategoryName = "Computers & Accessories" },
+            new Category { Id = 4, CategoryName = "Smart Devices" },
+            new Category { Id = 5, CategoryName = "Gaming" }
+        };
 
         [BindProperty]
         public Product Product { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null || _context.GetProducts() == null)
             {
                 return NotFound();
             }
 
-            var product =  await _context.Products.FirstOrDefaultAsync(m => m.Id == id);
+            var product = _context.GetProduct(id);
             if (product == null)
             {
                 return NotFound();
             }
             Product = product;
-           ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "CategoryName");
+           ViewData["CategoryId"] = new SelectList(categories, "Id", "CategoryName");
             return Page();
         }
 
@@ -43,16 +52,10 @@ namespace Tech_Store_WebApp.Pages.ProductPage
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            _context.Attach(Product).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                _context.Update(Product);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,7 +74,7 @@ namespace Tech_Store_WebApp.Pages.ProductPage
 
         private bool ProductExists(int id)
         {
-          return (_context.Products?.Any(e => e.Id == id)).GetValueOrDefault();
+          return _context.GetProduct(id)!= null;
         }
     }
 }

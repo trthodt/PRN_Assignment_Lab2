@@ -3,6 +3,11 @@
 
 @{
     ViewData["Title"] = "Create";
+    string role = HttpContext.Session.GetString("Role");
+    if (!"admin".Equals(role))
+    {
+        Response.Redirect("/Login");
+    }
 }
 
 <h1>Create</h1>

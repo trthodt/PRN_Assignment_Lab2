@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech_Repositories", "Tech_R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech_Services", "Tech_Services\Tech_Services.csproj", "{A7AA3B0C-D097-4C32-B758-3E1BFA2E1CDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech_Store_WebApp", "Tech_Store_WebApp\Tech_Store_WebApp.csproj", "{10D367D9-3DA3-4E50-9CF8-AF0D7F5908FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tech_Store_WebApp", "Tech_Store_WebApp\Tech_Store_WebApp.csproj", "{10D367D9-3DA3-4E50-9CF8-AF0D7F5908FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

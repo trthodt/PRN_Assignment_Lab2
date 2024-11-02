@@ -50,7 +50,11 @@ namespace Tech_Store_WebApp.Pages
                 Message = "Invalid Email or Password";
                 return Page();
             }
-
+            if (!user.Role.Equals("admin")) {
+                Message = "You don't have permision to access this application";
+                return Page();
+            }
+            HttpContext.Session.SetString("Role", user.Role);
             // Redirect to ProductPage on successful login
             return RedirectToPage("/ProductPage/Index");
         }

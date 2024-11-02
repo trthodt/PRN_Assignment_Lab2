@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Tech_BussinessObjects;
+using Tech_Services.Interface;
 
 namespace Tech_Store_WebApp.Pages.ProductPage
 {
     public class IndexModel : PageModel
     {
-        private readonly Tech_BussinessObjects.PRN221_ASSIGNMENTContext _context;
+        private readonly IProductService _context;
 
-        public IndexModel(Tech_BussinessObjects.PRN221_ASSIGNMENTContext context)
+        public IndexModel(IProductService context)
         {
             _context = context;
         }
@@ -22,10 +23,9 @@ namespace Tech_Store_WebApp.Pages.ProductPage
 
         public async Task OnGetAsync()
         {
-            if (_context.Products != null)
+            if (_context.GetProducts() != null)
             {
-                Product = await _context.Products
-                .Include(p => p.Category).ToListAsync();
+                Product = _context.GetProducts();
             }
         }
     }

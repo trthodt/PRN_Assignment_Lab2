@@ -6,38 +6,47 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Tech_BussinessObjects;
+using Tech_Services.Interface;
 
 namespace Tech_Store_WebApp.Pages.ProductPage
 {
     public class CreateModel : PageModel
     {
-        private readonly Tech_BussinessObjects.PRN221_ASSIGNMENTContext _context;
+        private readonly IProductService _context;
 
-        public CreateModel(Tech_BussinessObjects.PRN221_ASSIGNMENTContext context)
+        public CreateModel(IProductService context)
         {
             _context = context;
         }
 
+        List<Category> categories = new List<Category>
+         {
+             new Category { Id = 1, CategoryName = "Electronics" },
+             new Category { Id = 2, CategoryName = "Home Appliances" },
+             new Category { Id = 3, CategoryName = "Computers & Accessories" },
+             new Category { Id = 4, CategoryName = "Smart Devices" },
+             new Category { Id = 5, CategoryName = "Gaming" }
+         };
+
         public IActionResult OnGet()
         {
-        ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "CategoryName");
+            ViewData["CategoryId"] = new SelectList(categories, "Id", "CategoryName");
             return Page();
         }
 
         [BindProperty]
         public Product Product { get; set; } = default!;
-        
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Products == null || Product == null)
+            if (!ModelState.IsValid || _context.GetProducts() == null || Product == null)
             {
                 return Page();
             }
 
-            _context.Products.Add(Product);
-            await _context.SaveChangesAsync();
+            _context.Create(Product);
 
             return RedirectToPage("./Index");
         }
