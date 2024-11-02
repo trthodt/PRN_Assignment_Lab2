@@ -1,0 +1,37 @@
+﻿@page "{orderId:int}"
+@model Tech_Store_WebApp.Pages.OrderPage.OrderDetailsModel
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h1>Order Details</h1>
+
+@if (Model.OrderDetails?.Count > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detail in Model.OrderDetails)
+            {
+                <tr>
+                    <td>@detail.Product.ProductName</td>
+                    <td>@detail.Quantity</td>
+                    <td>@detail.Price</td>
+                    <td>@detail.Total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No details available for this order.</p>
+}

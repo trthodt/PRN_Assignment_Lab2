@@ -1,5 +1,5 @@
 ﻿@page
-@model Tech_Store_WebApp.Pages.OrderModel
+@model Tech_Store_WebApp.Pages.OrderPage.OrderModel
 @{
 }
 
@@ -8,7 +8,7 @@
     <thead>
         <tr>
             <th>Order ID</th>
-            <th>User ID</th>
+            <th>Customer</th>
             <th>Total Amount</th>
             <th>Order Date</th>
             <th>Status</th>
@@ -20,12 +20,12 @@
         {
             <tr>
                 <td>@order.Id</td>
-                <td>@order.UserId</td>
+                <td>@order.User.Fullname</td>
                 <td>@order.TotalAmount</td>
                 <td>@order.OrderDate?.ToString("g")</td>
                 <td>@order.Status</td>
                 <td>
-                    <a asp-page="./Details" asp-route-id="@order.Id" class="btn btn-info">View Details</a>
+                    <a href="/OrderPage/OrderDetails/@order.Id" class="btn btn-info">View Details</a>
                 </td>
             </tr>
         }
