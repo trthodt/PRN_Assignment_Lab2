@@ -12,11 +12,11 @@ namespace Tech_Store_WebApp.Pages.ProductPage
 {
     public class DeleteModel : PageModel
     {
-        private readonly IProductService _context;
+        private readonly IProductService _productService;
 
         public DeleteModel(IProductService context)
         {
-            _context = context;
+            _productService = context;
         }
 
         [BindProperty]
@@ -24,12 +24,12 @@ namespace Tech_Store_WebApp.Pages.ProductPage
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.GetProducts() == null)
+            if (id == null || _productService.GetProducts() == null)
             {
                 return NotFound();
             }
 
-            var product = _context.GetProduct(id);
+            var product = _productService.GetProduct(id);
 
             if (product == null)
             {
@@ -44,15 +44,15 @@ namespace Tech_Store_WebApp.Pages.ProductPage
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (id == null || _context.GetProducts() == null)
+            if (id == null || _productService.GetProducts() == null)
             {
                 return NotFound();
             }
-            var product = _context.GetProduct(id);
+            var product = _productService.GetProduct(id);
 
             if (product != null)
             {
-                _context.Delete(product);
+                _productService.Delete(product);
             }
 
             return RedirectToPage("./Index");

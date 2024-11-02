@@ -15,6 +15,7 @@ namespace Tech_Store_WebApp.Pages.OrderPage
             _orderService = orderService;
         }
         public List<Order> Orders { get; set; }
+        public int TotalOrder { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public int PageIndex { get; set; } = 1;
@@ -23,6 +24,7 @@ namespace Tech_Store_WebApp.Pages.OrderPage
         public async Task OnGetAsync()
         {
             Orders = _orderService.GetOrdersPagination(PageIndex, 5);
+            TotalOrder = _orderService.Count();
         }
     }
 }

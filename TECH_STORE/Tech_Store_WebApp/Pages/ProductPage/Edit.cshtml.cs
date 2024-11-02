@@ -13,11 +13,11 @@ namespace Tech_Store_WebApp.Pages.ProductPage
 {
     public class EditModel : PageModel
     {
-        private readonly IProductService _context;
+        private readonly IProductService _productService;
 
         public EditModel(IProductService context)
         {
-            _context = context;
+            _productService = context;
         }
         List<Category> categories = new List<Category>
         {
@@ -33,12 +33,12 @@ namespace Tech_Store_WebApp.Pages.ProductPage
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.GetProducts() == null)
+            if (id == null || _productService.GetProducts() == null)
             {
                 return NotFound();
             }
 
-            var product = _context.GetProduct(id);
+            var product = _productService.GetProduct(id);
             if (product == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace Tech_Store_WebApp.Pages.ProductPage
 
             try
             {
-                _context.Update(Product);
+                _productService.Update(Product);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -74,7 +74,7 @@ namespace Tech_Store_WebApp.Pages.ProductPage
 
         private bool ProductExists(int id)
         {
-          return _context.GetProduct(id)!= null;
+          return _productService.GetProduct(id)!= null;
         }
     }
 }

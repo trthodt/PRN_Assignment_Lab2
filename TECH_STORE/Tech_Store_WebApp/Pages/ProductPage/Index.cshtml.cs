@@ -12,20 +12,20 @@ namespace Tech_Store_WebApp.Pages.ProductPage
 {
     public class IndexModel : PageModel
     {
-        private readonly IProductService _context;
+        private readonly IProductService _productService;
 
         public IndexModel(IProductService context)
         {
-            _context = context;
+            _productService = context;
         }
 
         public IList<Product> Product { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.GetProducts() != null)
+            if (_productService.GetProducts() != null)
             {
-                Product = _context.GetProducts();
+                Product = _productService.GetProducts();
             }
         }
 
@@ -34,10 +34,10 @@ namespace Tech_Store_WebApp.Pages.ProductPage
             string query = Request.Form["query"];
             if (string.IsNullOrEmpty(query))
             {
-                return Page();
+                query = "";
             }
 
-            var results = _context.SearchByName(query);
+            var results = _productService.SearchByName(query);
             Product = results;
 
             return Page();

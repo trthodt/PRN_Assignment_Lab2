@@ -3,6 +3,11 @@
 
 @{
     ViewData["Title"] = "Order Details";
+    string role = HttpContext.Session.GetString("Role");
+    if (!"admin".Equals(role))
+    {
+        Response.Redirect("/Login");
+    }
 }
 
 <h1>Order Details</h1>
@@ -30,8 +35,9 @@
             }
         </tbody>
     </table>
+    <a href="/OrderPage"><button class="btn btn-primary">Back</button></a>
 }
 else
 {
-    <p>No details available for this order.</p>
+    <p>No details available for this order. <a href="/OrderPage">Back to Order Page</a></p>
 }

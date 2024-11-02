@@ -12,11 +12,11 @@ namespace Tech_Store_WebApp.Pages.ProductPage
 {
     public class CreateModel : PageModel
     {
-        private readonly IProductService _context;
+        private readonly IProductService _productService;
 
         public CreateModel(IProductService context)
         {
-            _context = context;
+            _productService = context;
         }
 
         List<Category> categories = new List<Category>
@@ -41,12 +41,12 @@ namespace Tech_Store_WebApp.Pages.ProductPage
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || _context.GetProducts() == null || Product == null)
+            if (!ModelState.IsValid || _productService.GetProducts() == null || Product == null)
             {
                 return Page();
             }
 
-            _context.Create(Product);
+            _productService.Create(Product);
 
             return RedirectToPage("./Index");
         }
