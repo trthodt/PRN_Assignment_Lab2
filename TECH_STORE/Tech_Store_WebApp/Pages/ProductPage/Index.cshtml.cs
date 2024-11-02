@@ -28,5 +28,19 @@ namespace Tech_Store_WebApp.Pages.ProductPage
                 Product = _context.GetProducts();
             }
         }
+
+        public IActionResult OnPostSearch()
+        {
+            string query = Request.Form["query"];
+            if (string.IsNullOrEmpty(query))
+            {
+                return Page();
+            }
+
+            var results = _context.SearchByName(query);
+            Product = results;
+
+            return Page();
+        }
     }
 }
